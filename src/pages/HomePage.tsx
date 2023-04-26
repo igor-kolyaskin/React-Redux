@@ -25,9 +25,16 @@ export function HomePage() {
                     value={search}
                     onChange={event => setSearch(event.target.value)}
                 />
-                <div className='absolute top-[42px] left-0 right-0 bg-white max-h-[200px] shadow-md'>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nihil, alias?
-                </div>
+                <ul className='list-none absolute top-[42px] left-0 right-0 bg-white max-h-[200px] shadow-md overflow-y-scroll'>
+                    {isLoading && <p className='text-center'>Loading...</p>}
+                    {data?.map(user =>
+                        <li
+                            key={user.id}
+                            className='py-2 px-4 hover:bg-gray-500 hover:text-white cursor-pointer transition-colors'
+                        >
+                            {user.login}
+                        </li>)}
+                </ul>
             </div>
         </div>
     )
