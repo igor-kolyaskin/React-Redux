@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { useSearchUsersQuery } from '../store/github/github.api'
+import { useDebounce } from '../hooks/debounce'
 
 export function HomePage() {
     const [search, setSearch] = useState('')
+    const debounced = useDebounce(search)
     const { isLoading, isError, data } = useSearchUsersQuery('igor')
 
     useEffect(() => {
-        console.log(search)
-    }, [search])
+        console.log(debounced)
+    }, [debounced])
 
     return (
         <div className='flex justify-center pt-10 mx-auto h-screen w-screen'>
