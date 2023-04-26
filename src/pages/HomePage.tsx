@@ -5,7 +5,9 @@ import { useDebounce } from '../hooks/debounce'
 export function HomePage() {
     const [search, setSearch] = useState('')
     const debounced = useDebounce(search)
-    const { isLoading, isError, data } = useSearchUsersQuery('igor')
+    const { isLoading, isError, data } = useSearchUsersQuery(debounced, {
+        skip: debounced.length < 3
+    })
 
     useEffect(() => {
         console.log(debounced)
